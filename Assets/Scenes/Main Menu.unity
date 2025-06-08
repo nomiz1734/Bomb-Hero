@@ -818,8 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08ad37c4fffcc6488a0a764bcf486e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Esposide1
-  delayBeforeLoad: 2
+  sceneToLoad: LevelSelect
+  delayBeforeLoad: 1
   audioSource: {fileID: 0}
 --- !u!114 &415008730
 MonoBehaviour:
