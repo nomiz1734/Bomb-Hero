@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private Image hpBar;
     [SerializeField] protected float enterDamage = 10f;
     [SerializeField] protected float stayDamage = 1f;
+    [SerializeField] protected int expToGive = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -57,6 +58,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
+        EXPLVController.instance.SpawnPickup(transform.position, expToGive);
     }
     protected void UpdateHpBar()
     {

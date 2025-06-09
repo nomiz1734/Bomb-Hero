@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Boss_level_lock-removebg-preview_0: 8015306094977914833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
