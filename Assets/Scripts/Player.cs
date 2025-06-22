@@ -25,9 +25,14 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+
         currentHp = maxHp;
         UpdateHpBar();
         gameOverText.gameObject.SetActive(false);
+    }
+    void LoadPlayerData()
+    {
+        maxHp = SaveSystem.GetFloat("PlayerMaxHp", maxHp);
     }
 
     // Update is called once per frame
@@ -99,6 +104,8 @@ public class Player : MonoBehaviour
     {
         Destroy(gameObject);
         ShowGameOver(); // Hiển thị "Game Over" khi chết
+        SaveSystem.SetFloat("PlayerMaxHp", 150f);
+        SaveSystem.SaveToDisk(); // Lưu dữ liệu khi chết
     }
 
     protected void UpdateHpBar()

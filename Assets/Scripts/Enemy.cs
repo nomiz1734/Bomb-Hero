@@ -58,7 +58,8 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
-        EXPLVController.instance.SpawnPickup(transform.position, expToGive);
+        //EXPLVController.instance.SpawnPickup(transform.position, expToGive);
+        CoinController.instance.SpawnPickup(transform.position, 1);
     }
     protected void UpdateHpBar()
     {

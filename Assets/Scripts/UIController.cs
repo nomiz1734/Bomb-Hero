@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
 
     public Slider expLevelSlider;
     public TMP_Text expLevelText;
+    public TMP_Text CoinText;
 
     public int a, b;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,5 +32,10 @@ public class UIController : MonoBehaviour
         expLevelSlider.maxValue = levelExp;
         expLevelSlider.value = currentExp;
         expLevelText.text = "Level: " + currentLevel;
+    }
+
+    public void UpdateCoins(int coins)
+    {
+        CoinText.text = "Coins: " + coins;
     }
 }
