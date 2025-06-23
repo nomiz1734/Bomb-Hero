@@ -25,9 +25,17 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        //currentHp = SaveSystem.GetFloat("PlayerCurrentHp", maxHp);
         currentHp = maxHp;
         UpdateHpBar();
         gameOverText.gameObject.SetActive(false);
+        LoadPlayerData(); // Tải dữ liệu người chơi từ SaveSystem
+    }
+    void LoadPlayerData()
+    {
+        //maxHp = SaveSystem.GetFloat("PlayerMaxHp", maxHp);
+        int currentCoins = SaveSystem.GetInt("PlayerCoins");
+        CoinController.instance.SetCurrentCoin(currentCoins); // Cập nhật số tiền hiện tại
     }
 
     // Update is called once per frame
@@ -99,6 +107,9 @@ public class Player : MonoBehaviour
     {
         Destroy(gameObject);
         ShowGameOver(); // Hiển thị "Game Over" khi chết
+        //SaveCoin(); // Lưu số tiền khi chết
+        //SaveSystem.SetFloat("PlayerMaxHp", 150f);
+        //SaveSystem.SaveToDisk(); // Lưu dữ liệu khi chết
     }
 
     protected void UpdateHpBar()
@@ -113,4 +124,6 @@ public class Player : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true); // Kích hoạt Text "Game Over"
     }
+
+   
 }

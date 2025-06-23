@@ -8,6 +8,7 @@ TagManager:
   - PlayerWeapon
   - Rock
   - Edge
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

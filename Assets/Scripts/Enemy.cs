@@ -57,8 +57,16 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die()
     {
+        float rand = Random.value;
+        if (rand < 0.1f)
+        {
+            CoinController.instance.SpawnPickup(transform.position, 1);
+        }
+        else
+        {           
+             EXPLVController.instance.SpawnPickup(transform.position, expToGive);
+        }
         Destroy(gameObject);
-        EXPLVController.instance.SpawnPickup(transform.position, expToGive);
     }
     protected void UpdateHpBar()
     {
