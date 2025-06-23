@@ -32,4 +32,12 @@ public class CoinController : MonoBehaviour
     {
         Instantiate(pickup, position, Quaternion.identity).value = value;
     }
+
+
+    //demo save coin 
+    public void SetCurrentCoin(int value)
+    {
+        currentCoins = value;
+        UIController.instance.UpdateCoins(currentCoins);
+    }
 }
