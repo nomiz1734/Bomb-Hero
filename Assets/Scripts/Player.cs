@@ -125,5 +125,5 @@ public class Player : MonoBehaviour
         gameOverText.gameObject.SetActive(true); // Kích hoạt Text "Game Over"
     }
 
-    
+   
 }

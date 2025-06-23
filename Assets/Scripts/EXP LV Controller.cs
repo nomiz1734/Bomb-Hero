@@ -6,6 +6,11 @@ public class EXPLVController : MonoBehaviour
 {
     public static EXPLVController instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private int LvThreshold = 5;
+    [SerializeField] private GameObject boss;
+    [SerializeField] private GameObject spawnEnemy;
+    private bool bossSpawned = false;
+
 
     private void Awake()
     {
@@ -18,6 +23,7 @@ public class EXPLVController : MonoBehaviour
     public int currentLevel = 1, levelCount = 100;
     void Start()
     {
+        boss.SetActive(false);
         while (expLevels.Count < levelCount)
         {
             expLevels.Add(Mathf.CeilToInt(expLevels[expLevels.Count - 1] * 1.1f));
@@ -45,9 +51,16 @@ public class EXPLVController : MonoBehaviour
     {
         Instantiate(pickup, position, Quaternion.identity).expValue=value;
     }
-
+    private void CallBoss() { 
+        bossSpawned= true;
+        boss.SetActive(true);
+        spawnEnemy.SetActive(false);
+    }
     void LevelUp()
     {
+        if (bossSpawned) { 
+            return;
+        }
         currentExperience -= expLevels[currentLevel];
         currentLevel++;
         Debug.Log("Leveled up to level: " + currentLevel);
@@ -55,6 +68,8 @@ public class EXPLVController : MonoBehaviour
         {
             currentLevel = expLevels.Count - 1; 
         }
-
+        if(currentLevel == LvThreshold) { 
+            CallBoss();
+        }
     }
 }
