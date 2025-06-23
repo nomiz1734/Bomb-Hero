@@ -5,7 +5,7 @@ public class Hand : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform firePos;
     [SerializeField] private GameObject bulletPrefabs;
-    [SerializeField] private float shotDelay = 0.15f;
+    [SerializeField] private float shotDelay = 0.1f;
     private float nextShot;
     [SerializeField] private int maxAmmo = 5;
     public int currentAmmo;
