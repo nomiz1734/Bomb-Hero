@@ -43,6 +43,7 @@ public class EXPPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EXPLVController.instance.GetExp(expValue);
+            Debug.Log("Picked up EXP: " + expValue);
             Destroy(gameObject);
         }
     }

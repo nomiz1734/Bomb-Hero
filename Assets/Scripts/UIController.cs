@@ -37,5 +37,14 @@ public class UIController : MonoBehaviour
     public void UpdateCoins(int coins)
     {
         CoinText.text = "Coins: " + coins;
+        SaveCoin(); // Save coins whenever they are updated
+
+    }
+
+    void SaveCoin()
+    {
+        int currentCoins = CoinController.instance.currentCoins;
+        SaveSystem.SetInt("PlayerCoins", currentCoins);
+        //SaveSystem.SaveToDisk();
     }
 }
