@@ -11,7 +11,7 @@ public class SaveSystemSetup : MonoBehaviour {
 		SaveSystem.Initialize(fileName);
         if (!SaveSystem.HasKey("PlayerCoins"))
         {
-            SaveSystem.SetInt("PlayerCoins", 1000);
+            SaveSystem.SetInt("PlayerCoins", 10);
        
         }
         if (dontDestroyOnLoad) DontDestroyOnLoad(transform.gameObject);
