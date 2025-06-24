@@ -22,7 +22,7 @@ public class SaveSystemSetup : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            //SaveSystem.SetInt("PlayerCoins",1000);
+
             Debug.Log("All save data cleared.");
         }
     }
