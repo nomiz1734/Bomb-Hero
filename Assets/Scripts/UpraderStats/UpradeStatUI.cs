@@ -15,7 +15,7 @@ public class UpgradeStatUI : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI costText;
     public Button buyButton;
-    public TextMeshProUGUI textGold; // ✨ Gold UI hiển thị
+    public TextMeshProUGUI textGold; 
 
     [Header("Upgrade Data")]
     [SerializeField] private string upgradeName;
@@ -33,7 +33,7 @@ public class UpgradeStatUI : MonoBehaviour
         currentGold = SaveSystem.GetInt("PlayerCoins");
         currentLevel = SaveSystem.GetInt(upgradeName + "_Level", 0);
 
-        // Cập nhật UI
+    
         UpdateGoldUI();
         buyButton.interactable = false;
         UpdateLevelButtons();
@@ -42,7 +42,7 @@ public class UpgradeStatUI : MonoBehaviour
     void Update()
     {
         currentGold = SaveSystem.GetInt("PlayerCoins");
-        textGold.text=currentGold.ToString();
+        UpdateGoldUI();
     }
 
     void UpdateGoldUI()
@@ -120,11 +120,11 @@ public class UpgradeStatUI : MonoBehaviour
         currentGold -= cost;
         currentLevel = level;
 
-        // 🟢 Lưu chỉ số mới sau khi nâng cấp
+       
         SaveSystem.SetInt("PlayerCoins", currentGold);
         SaveSystem.SetInt(upgradeName + "_Level", currentLevel);
 
-        // (Nếu có thay đổi stat cụ thể như máu, giáp... thì lưu thêm)
+        
         switch (upgradeName.ToLower())
         {
             case "max health":
