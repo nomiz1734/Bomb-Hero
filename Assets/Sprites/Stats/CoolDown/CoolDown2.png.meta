@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CoolDown2_0: 7550035862159031017
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
