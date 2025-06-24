@@ -9,7 +9,12 @@ public class SaveSystemSetup : MonoBehaviour {
     void Awake()
 	{
 		SaveSystem.Initialize(fileName);
-		if(dontDestroyOnLoad) DontDestroyOnLoad(transform.gameObject);
+        if (!SaveSystem.HasKey("PlayerCoins"))
+        {
+            SaveSystem.SetInt("PlayerCoins", 10);
+       
+        }
+        if (dontDestroyOnLoad) DontDestroyOnLoad(transform.gameObject);
 	}
 
 	// hàm tạm để clear currentcoin
@@ -17,7 +22,7 @@ public class SaveSystemSetup : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SaveSystem.SetInt("PlayerCoins", 0);
+
             Debug.Log("All save data cleared.");
         }
     }
