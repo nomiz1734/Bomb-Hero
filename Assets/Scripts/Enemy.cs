@@ -38,8 +38,13 @@ public abstract class Enemy : MonoBehaviour
 
     protected void FlipEnemy()
     {
-        if (player != null) {
-            transform.localScale = new Vector3(player.transform.position.x < transform.position.x ? -1 : 1, 1, 1);
+        if (player != null)
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.flipX = player.transform.position.x < transform.position.x;
+            }
         }
     }
 

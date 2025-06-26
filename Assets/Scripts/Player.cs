@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     [SerializeField] private float maxHp = 100f;
     private float currentHp;
+    [SerializeField] private float shield = 0f;
     [SerializeField] private Image hpBar;
     [SerializeField] public float pickupRange = 1.5f;
     public TextMeshProUGUI gameOverText; // TextMesh Pro để hiển thị
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
 
     }
     void Start()
@@ -33,9 +36,15 @@ public class Player : MonoBehaviour
     }
     void LoadPlayerData()
     {
-        //maxHp = SaveSystem.GetFloat("PlayerMaxHp", maxHp);
-        int currentCoins = SaveSystem.GetInt("PlayerCoins");
-        CoinController.instance.SetCurrentCoin(currentCoins); // Cập nhật số tiền hiện tại
+        maxHp += SaveSystem.GetFloat("PlayerHp", maxHp);
+        pickupRange = SaveSystem.GetFloat("PlayerRangePickUp", pickupRange);
+        //int currentCoins = SaveSystem.GetInt("PlayerCoins");
+        //CoinController.instance.SetCurrentCoin(currentCoins); // Cập nhật số tiền hiện tại
+        shield = SaveSystem.GetFloat("PlayerShield", shield);
+        float cooldown = SaveSystem.GetFloat("PlayerCoolDown", 0f);
+        // chua set bien cooldown va shield
+
+
     }
 
     // Update is called once per frame
@@ -110,8 +119,15 @@ public class Player : MonoBehaviour
         //SaveCoin(); // Lưu số tiền khi chết
         //SaveSystem.SetFloat("PlayerMaxHp", 150f);
         //SaveSystem.SaveToDisk(); // Lưu dữ liệu khi chết
-    }
+        //StartCoroutine(ReturnToSelectLevel());
+        ReturnToSelectLevel();
 
+    }
+    private void ReturnToSelectLevel()
+    {
+        //yield return new WaitForSeconds(1.5f); // Đợi 1.5 giây (hoặc thời gian bạn muốn)
+        SceneManager.LoadSceneAsync("LevelSelect"); // Đảm bảo tên scene đúng với project của bạn
+    }
     protected void UpdateHpBar()
     {
         if (hpBar != null)
@@ -127,3 +143,7 @@ public class Player : MonoBehaviour
 
    
 }
+
+
+
+

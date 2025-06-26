@@ -44,7 +44,8 @@ public class UIController : MonoBehaviour
     void SaveCoin()
     {
         int currentCoins = CoinController.instance.currentCoins;
-        SaveSystem.SetInt("PlayerCoins", currentCoins);
+        int coins= SaveSystem.GetInt("PlayerCoins",0);
+        SaveSystem.SetInt("PlayerCoins", coins + currentCoins);
         //SaveSystem.SaveToDisk();
     }
 }
