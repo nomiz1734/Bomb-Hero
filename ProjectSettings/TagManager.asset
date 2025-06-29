@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - PlayerWeapon
+  - Rock
+  - Edge
+  - EnemyBullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BG
+    uniqueID: 915224361
+    locked: 0
+  - name: Rock
+    uniqueID: 1535870051
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 2791520503
+    locked: 0
+  - name: PickUp
+    uniqueID: 2522374547
+    locked: 0
+  - name: Player
+    uniqueID: 1691441957
+    locked: 0
+  - name: weapon
+    uniqueID: 3456486761
+    locked: 0
+  - name: bombSpawn
+    uniqueID: 3123077741
+    locked: 0
+  - name: HPbar
+    uniqueID: 1439807771
+    locked: 0
+  m_RenderingLayers:
+  - Default
