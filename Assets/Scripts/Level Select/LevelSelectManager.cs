@@ -8,20 +8,19 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField] private Button startButton;
 
     [Header("Level Buttons")]
-    [SerializeField] private Button[] levelButtons; // Level 1 to 5
-
+    [SerializeField] private Button[] levelButtons;
     [Header("Sprites")]
-    [SerializeField] private Sprite lockSprite;         // Thường - khóa
-    [SerializeField] private Sprite openSprite;         // Thường - mở
-    [SerializeField] private Sprite bossLockSprite;     // Boss - khóa
-    [SerializeField] private Sprite bossOpenSprite;     // Boss - mở
+    [SerializeField] private Sprite lockSprite;         
+    [SerializeField] private Sprite openSprite;         
+    [SerializeField] private Sprite bossLockSprite;     
+    [SerializeField] private Sprite bossOpenSprite;     
 
     private string selectedSceneName = "";
     private int currentLevel;
 
     private void Start()
     {
-        currentLevel = SaveSystem.GetInt("Level", 1); // Mặc định mở Level 1
+        currentLevel = SaveSystem.GetInt("Level", 1); 
         startButton.gameObject.SetActive(false);
 
         for (int i = 0; i < levelButtons.Length; i++)
