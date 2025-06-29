@@ -2321,6 +2321,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 470351739}
+  levelButtons:
+  - {fileID: 1769993484}
+  - {fileID: 2112707544}
+  - {fileID: 1513430025}
+  - {fileID: 2030971376}
+  - {fileID: 1415845803}
+  lockSprite: {fileID: -7556643074249749525, guid: 974ab255d9390b54980c8a30bf455ec1, type: 3}
+  openSprite: {fileID: 3715445393562848404, guid: fc80b3fa81a05bb44b6d8423305791bd, type: 3}
+  bossLockSprite: {fileID: 8015306094977914833, guid: ce27e8b30eaaf574eb0b467eb16aa0da, type: 3}
+  bossOpenSprite: {fileID: 280708186956805608, guid: 8daddaa863ebe33448efd1de15ec9e36, type: 3}
 --- !u!114 &681684985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4057,8 +4067,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.1554, y: 1.3379}
-  m_SizeDelta: {x: 513.3695, y: 368.7398}
+  m_AnchoredPosition: {x: -0.000013351, y: 1.3379}
+  m_SizeDelta: {x: 601, y: 368.7398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1405891316
 GameObject:
