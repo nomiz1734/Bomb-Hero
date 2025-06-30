@@ -68,8 +68,10 @@ public class EXPLVController : MonoBehaviour
         {
             currentLevel = expLevels.Count - 1; 
         }
-        if(currentLevel == LvThreshold) { 
+        if (currentLevel == LvThreshold)
+        {
             CallBoss();
         }
+        GameManager.instance.activeWeapon.LevelUp();
     }
 }
