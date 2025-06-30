@@ -8,6 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public Weapon activeWeapon;
     //[SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject endGame;
     [SerializeField] private GameObject gamePause;
