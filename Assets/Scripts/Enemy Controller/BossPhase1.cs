@@ -31,7 +31,7 @@ public class BossPhase1 : Enemy
 
         FollowPlayer();
 
-        // Kiểm tra xem boss có đang di chuyển (tức là đang tấn công) hay không
+        // Kiểm tra boss có đang di chuyển hay không
         isAttacking = (transform.position != lastPosition);
         lastPosition = transform.position;
     }
@@ -43,7 +43,19 @@ public class BossPhase1 : Enemy
         Vector3 direction = (player.transform.position - transform.position).normalized;
         transform.position += direction * followSpeed * Time.deltaTime;
 
-        // Đã bỏ FlipEnemy (boss không quay mặt)
+        FlipEnemy(); // Gọi lại từ class cha
+    }
+    protected void FlipEnemy()
+    {
+        if (player != null)
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                // Đảo lại dấu để fix hướng
+                spriteRenderer.flipX = player.transform.position.x > transform.position.x;
+            }
+        }
     }
 
     public override void TakeDamage(float damage)
@@ -100,6 +112,17 @@ public class BossPhase1 : Enemy
             if (p != null)
             {
                 p.TakeDamage(stayDamage * Time.deltaTime);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (animator != null)
+            {
+                animator.SetBool("IsFlying", true); // Quay lại trạng thái bay khi không còn va chạm
             }
         }
     }
