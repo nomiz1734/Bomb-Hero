@@ -23,12 +23,18 @@ public class Bomb : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy")) { 
+        Debug.Log("Bomb hit: " + collision.name);
+
+        if (collision.CompareTag("Enemy"))
+        {
             Enemy enemy = collision.GetComponent<Enemy>();
-            if (enemy != null) {
+            if (enemy != null)
+            {
+                Debug.Log("Bomb deals damage to: " + enemy.name);
                 enemy.TakeDamage(damageDeal);
             }
             Destroy(gameObject);
         }
     }
+
 }
