@@ -172,3 +172,4 @@ MonoBehaviour:
   expValue: 1
   speed: 1
   timeBetweenChecks: 0.2
+  audioManager: {fileID: 6127053645049016865, guid: ecbcbf866b5cf3a4c971da876d5bb686, type: 3}

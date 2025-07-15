@@ -27,9 +27,9 @@ public class BossEnemy : Enemy
     {
         Teleport();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (player != null)
             {
@@ -38,9 +38,9 @@ public class BossEnemy : Enemy
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (player != null)
             {
@@ -84,6 +84,7 @@ public class BossEnemy : Enemy
 
     private void SpawnMiniEnemy() { 
         Instantiate(miniEnemyPrefab, transform.position, Quaternion.identity);
+        miniEnemyPrefab.transform.localScale = new Vector3(3, 3, 1);
     }
     private void Teleport()
     {

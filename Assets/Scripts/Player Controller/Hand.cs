@@ -10,6 +10,7 @@ public class Hand : MonoBehaviour
     private float nextShot;
     [SerializeField] private int maxAmmo = 4;
     public int currentAmmo;
+    [SerializeField] private AudioManager audioManager;
     private void Awake()
     {
         instance = this;
@@ -49,6 +50,7 @@ public class Hand : MonoBehaviour
                 Bomb bombScript = bombObj.GetComponent<Bomb>();
                 bombScript.SetDirection(dir);
                 bombObj.SetActive(true);
+                audioManager.PlayShoot();
             }
         }
     }

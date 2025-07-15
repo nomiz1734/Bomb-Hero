@@ -9,6 +9,7 @@ public class EXPPickup : MonoBehaviour
     public float timeBetweenChecks = 0.2f;
     private float checkCounter;
     private Player player;
+    [SerializeField] private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,6 +46,7 @@ public class EXPPickup : MonoBehaviour
             EXPLVController.instance.GetExp(expValue);
             Debug.Log("Picked up EXP: " + expValue);
             Destroy(gameObject);
+            audioManager.PlayExp();
         }
     }
     //private void OnCollisionEnter2D(Collision2D collision)

@@ -55,7 +55,7 @@ public class Bomb : Weapon
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Bomb hit: " + collision.name);
+        //Debug.Log("Bomb hit: " + collision.name);
 
         if (collision.CompareTag("Enemy"))
         {
