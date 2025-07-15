@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BossPhase1 : Enemy
 {
+    [Header("Boss Settings")]
     [SerializeField] private float followSpeed = 3f;
+    [SerializeField] private GameObject bossPhase2Prefab; // Prefab, không phải object trong scene
+    [SerializeField] private GameObject spawnEffectPrefab;
+    [SerializeField] private float offsetFromPlayer = 2f;
 
+    private bool isDead = false;
+    private Vector3 deathPosition;
     private Animator animator;
     private bool isAttacking = false;
     private Vector3 lastPosition;
@@ -14,7 +21,7 @@ public class BossPhase1 : Enemy
         animator = GetComponent<Animator>();
         if (animator != null)
         {
-            animator.SetBool("IsFlying", true); // Boss bay mặc định
+            animator.SetBool("IsFlying", true);
         }
 
         lastPosition = transform.position;
@@ -22,16 +29,17 @@ public class BossPhase1 : Enemy
 
     protected override void Update()
     {
+        if (isDead) return;
+
         base.Update();
 
-        // Luôn giữ boss ở trục Z = 0 để không bị mất hình
+        // Giữ boss ở Z = 0
         Vector3 pos = transform.position;
         pos.z = 0;
         transform.position = pos;
 
         FollowPlayer();
 
-        // Kiểm tra boss có đang di chuyển hay không
         isAttacking = (transform.position != lastPosition);
         lastPosition = transform.position;
     }
@@ -43,8 +51,9 @@ public class BossPhase1 : Enemy
         Vector3 direction = (player.transform.position - transform.position).normalized;
         transform.position += direction * followSpeed * Time.deltaTime;
 
-        FlipEnemy(); // Gọi lại từ class cha
+        FlipEnemy();
     }
+
     protected void FlipEnemy()
     {
         if (player != null)
@@ -52,7 +61,6 @@ public class BossPhase1 : Enemy
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
-                // Đảo lại dấu để fix hướng
                 spriteRenderer.flipX = player.transform.position.x > transform.position.x;
             }
         }
@@ -62,7 +70,6 @@ public class BossPhase1 : Enemy
     {
         base.TakeDamage(damage);
 
-        // Không play animation Hurt nếu đang di chuyển hoặc boss đã chết
         if (!isAttacking && animator != null && currentHp > 0)
         {
             animator.SetTrigger("Hurt");
@@ -71,19 +78,51 @@ public class BossPhase1 : Enemy
 
     protected override void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
         if (animator != null)
         {
             animator.SetTrigger("Death");
         }
 
-        // Delay để animation chết hiển thị xong
-        Invoke(nameof(DestroySelf), 1f);
+        deathPosition = transform.position;
+
+        // Gọi hiệu ứng và sinh boss mới sau delay
+        Invoke(nameof(SpawnNextPhaseAndDestroy), 2.5f);
     }
 
-    private void DestroySelf()
+    private void SpawnNextPhaseAndDestroy()
     {
-        Destroy(gameObject);
+        if (spawnEffectPrefab != null)
+        {
+            Instantiate(spawnEffectPrefab, deathPosition, Quaternion.identity);
+        }
+
+        StartCoroutine(SpawnBossPhase2());
     }
+
+    private IEnumerator SpawnBossPhase2()
+    {
+        yield return new WaitForSeconds(1f); // Delay sau hiệu ứng
+
+        if (bossPhase2Prefab != null)
+        {
+            Vector3 spawnPos = deathPosition;
+            spawnPos.z = 0; // Ép trục Z về 0
+
+            GameObject newBoss = Instantiate(bossPhase2Prefab, spawnPos, Quaternion.identity);
+
+            var boss2Script = newBoss.GetComponent<BossPhase2>();
+            if (boss2Script != null)
+            {
+                boss2Script.enabled = true;
+            }
+        }
+
+        Destroy(gameObject); // Huỷ boss1
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -94,11 +133,10 @@ public class BossPhase1 : Enemy
             {
                 p.TakeDamage(enterDamage);
 
-                // Gọi animation Attack
                 if (animator != null)
                 {
                     animator.SetTrigger("Attack");
-                    animator.SetBool("IsFlying", false); // Tạm ngừng bay khi attack
+                    animator.SetBool("IsFlying", false);
                 }
             }
         }
@@ -122,7 +160,7 @@ public class BossPhase1 : Enemy
         {
             if (animator != null)
             {
-                animator.SetBool("IsFlying", true); // Quay lại trạng thái bay khi không còn va chạm
+                animator.SetBool("IsFlying", true);
             }
         }
     }

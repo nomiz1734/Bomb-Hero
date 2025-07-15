@@ -9,6 +9,7 @@ TagManager:
   - Rock
   - Edge
   - EnemyBullet
+  - Ground
   layers:
   - Default
   - TransparentFX
