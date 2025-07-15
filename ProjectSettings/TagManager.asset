@@ -47,8 +47,20 @@ TagManager:
   - name: BG
     uniqueID: 915224361
     locked: 0
+  - name: Map Edge
+    uniqueID: 898158401
+    locked: 0
+  - name: Grass
+    uniqueID: 1990962949
+    locked: 0
+  - name: Bridge
+    uniqueID: 2071249253
+    locked: 0
   - name: Rock
     uniqueID: 1535870051
+    locked: 0
+  - name: Tree
+    uniqueID: 886937401
     locked: 0
   - name: Default
     uniqueID: 0

@@ -137,10 +137,11 @@ public class Player : MonoBehaviour
     //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Rock"))
-        {
-            Debug.Log("Player collided with Rock");
-        }        
+        //if(collision.gameObject.CompareTag("Rock"))
+        //{
+        //    Debug.Log("Player collided with Rock");
+        //}
+        Debug.Log("Player collided with " + collision.gameObject.name);
     }
 
 }
