@@ -28,6 +28,16 @@ public class Weapon : MonoBehaviour
     {
         
     }
+    public void SetWeaponLevel(int level)
+    {
+                if (level >= 0 && level < stats.Count - 1) {
+            weaponLevel =+ level;
+            statsUpdated = true;
+            Debug.Log("Weapon level set to: " + weaponLevel);
+        } else {
+            Debug.LogWarning("Invalid weapon level: " + level);
+        }
+    }
 }
 [System.Serializable]
 public class WeaponStats

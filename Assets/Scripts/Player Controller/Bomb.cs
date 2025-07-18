@@ -31,6 +31,7 @@ public class Bomb : Weapon
         {
             statsUpdated = false;
             SetStats();
+            //Debug.Log("Da seet stats");
         }
     }
     
@@ -75,5 +76,6 @@ public class Bomb : Weapon
         timeDestroy = stats[weaponLevel].duration;
         Hand.instance.SetCoolDown(stats[weaponLevel].cooldown);
         Hand.instance.SetAmmo((int)stats[weaponLevel].amount);
+
     }
 }

@@ -38,6 +38,7 @@ public class Hand : MonoBehaviour
     {
         currentAmmo = ammo;
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        //Debug.Log("Current Ammo: " + currentAmmo);
     }
     void Shoot(int a)
     {
