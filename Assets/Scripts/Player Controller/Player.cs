@@ -135,14 +135,14 @@ public class Player : MonoBehaviour
     //{
     //    gameOverText.gameObject.SetActive(true); // Kích hoạt Text "Game Over"
     //}
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    //if(collision.gameObject.CompareTag("Rock"))
-    //    //{
-    //    //    Debug.Log("Player collided with Rock");
-    //    //}
-    //    Debug.Log("Player collided with " + collision.gameObject.name);
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if(collision.gameObject.CompareTag("Rock"))
+        //{
+        //    Debug.Log("Player collided with Rock");
+        //}
+        Debug.Log("Player collided with " + collision.gameObject.name);
+    }
 
 }
 
