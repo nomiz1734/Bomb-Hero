@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      flaming_meteor_0: -4269642418630741987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

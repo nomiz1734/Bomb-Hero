@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = enemies[Random.Range(0, enemies.Length)];
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
             Instantiate(enemy, spawnPoint.position,Quaternion.identity);
-            enemy.transform.localScale = Vector3.one;
+            enemy.transform.localScale = new Vector3(3, 3, 1);
         }
     }
 

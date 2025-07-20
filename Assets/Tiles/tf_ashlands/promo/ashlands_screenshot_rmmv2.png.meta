@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ashlands_screenshot_rmmv2_0: 2279674899222704657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

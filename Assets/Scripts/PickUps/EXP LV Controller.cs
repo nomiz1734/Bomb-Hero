@@ -9,6 +9,7 @@ public class EXPLVController : MonoBehaviour
     [SerializeField] private int LvThreshold = 5;
     [SerializeField] private GameObject boss;
     [SerializeField] private GameObject spawnEnemy;
+    [SerializeField] private AudioManager audioManager;
     private bool bossSpawned = false;
 
 
@@ -52,6 +53,7 @@ public class EXPLVController : MonoBehaviour
         Instantiate(pickup, position, Quaternion.identity).expValue=value;
     }
     private void CallBoss() { 
+        audioManager.PlayBossMusic();
         bossSpawned= true;
         boss.SetActive(true);
         spawnEnemy.SetActive(false);
@@ -68,8 +70,10 @@ public class EXPLVController : MonoBehaviour
         {
             currentLevel = expLevels.Count - 1; 
         }
-        if(currentLevel == LvThreshold) { 
+        if (currentLevel == LvThreshold)
+        {
             CallBoss();
         }
+        GameManager.instance.activeWeapon.LevelUp();
     }
 }

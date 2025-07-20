@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tf_A2_ashlands_1_0: 1608940585156555920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

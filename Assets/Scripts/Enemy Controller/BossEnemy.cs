@@ -11,6 +11,9 @@ public class BossEnemy : Enemy
     [SerializeField] private float skillCooldown = 2f;
     [SerializeField] private GameObject endGameOrb; 
     private float skillTimer = 0f;
+    private bool isFirstTime = true;
+    private int level;
+    private int nextLevel;
     protected override void Update()
     {
         base.Update();
@@ -18,18 +21,37 @@ public class BossEnemy : Enemy
             UseSkill();
         }
     }
+    protected override void Start()
+    {
+        base.Start();
+        level = SaveSystem.GetInt("Level", 1);
+        nextLevel = level + 1;
+        if (nextLevel > 4)
+        {
+            nextLevel = 4;
+        }
+    }
     protected override void Die()
     {
         Instantiate(endGameOrb, transform.position, Quaternion.identity);
+        isFirstTime = SaveSystem.GetBool(level+ "_Completed", true);
+        if (isFirstTime)
+        {
+            SaveSystem.SetInt(level+ "_Completed", 1);
+            SaveSystem.SetInt(nextLevel+ "_Unlocked", 1);
+            SaveSystem.SetInt("Level", nextLevel);
+            SaveSystem.SaveToDisk();
+        }
         base.Die();
+
     }
     private void OnEnable()
     {
         Teleport();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (player != null)
             {
@@ -38,9 +60,9 @@ public class BossEnemy : Enemy
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (player != null)
             {
@@ -84,6 +106,7 @@ public class BossEnemy : Enemy
 
     private void SpawnMiniEnemy() { 
         Instantiate(miniEnemyPrefab, transform.position, Quaternion.identity);
+        miniEnemyPrefab.transform.localScale = new Vector3(3, 3, 1);
     }
     private void Teleport()
     {

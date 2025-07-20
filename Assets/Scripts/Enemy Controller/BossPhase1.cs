@@ -117,6 +117,10 @@ public class BossPhase1 : Enemy
             if (boss2Script != null)
             {
                 boss2Script.enabled = true;
+                GameManager.instance.activeWeapon.LevelUp();
+                GameManager.instance.activeWeapon.LevelUp();
+                GameManager.instance.activeWeapon.LevelUp();
+                //GameManager.instance.activeWeapon.LevelUp();
             }
         }
 
